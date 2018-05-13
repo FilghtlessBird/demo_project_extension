@@ -14,6 +14,7 @@ public class SocketServer {
     @OnOpen
     public void onOpen(Session session) {
         this.session = session;
+        System.out.println("add new session");
         webSocketSet.add(this);
     }
 

@@ -1,11 +1,23 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.5'
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
 
 group 'demo'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+
+
 
 repositories {
     mavenCentral()
@@ -14,4 +26,8 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'javax.websocket:javax.websocket-api:1.1'
+    def tomcatVersion = '7.0.59'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 }
