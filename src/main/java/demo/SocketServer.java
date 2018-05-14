@@ -1,9 +1,12 @@
+package demo;
+
+import javax.jws.WebService;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-@ServerEndpoint("/websocket")
+@ServerEndpoint(value = "/websocket")
 public class SocketServer {
     //储存所有和 WebSocket 连接的对象
     private static CopyOnWriteArraySet<SocketServer> webSocketSet = new CopyOnWriteArraySet<SocketServer>();
