@@ -4,8 +4,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.5'
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
     }
 }
 
@@ -53,10 +53,16 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'javax.websocket:javax.websocket-api:1.1'
-    def tomcatVersion = '7.0.59'
+    def tomcatVersion = '9.0.1'
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6",
             "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
     compile 'io.grpc:grpc-all:1.11.0'
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-websocket', version: '9.0.1'
+}
+
+tomcat {
+    httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
+    ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
+    httpPort = 8090
 }
